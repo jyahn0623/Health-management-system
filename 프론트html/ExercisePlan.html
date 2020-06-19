@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>나의 운동(홈)</title>
+    <style>
+        .div {
+            width: 720px;
+            margin-left: 100px;
+        }
+
+        .div1 {
+            display: inline-block;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 150px;
+        }
+
+        .ExerciseImg {
+            width: 720px;
+            height: 300px;
+            margin-left: 100px;
+            background-image: url("./Exercise_magazine.jpg");
+            background-position: bottom center;
+            background-size: cover;
+        }
+    </style>
+
+    <script type="text/javascript">
+    function timer () {
+        var date = new Date();
+        var year = date.getFullYear();
+        var montth = date.getMonth() + 1;
+        var day = date.getDate();
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Status bar div -->
+    <div class="div"><img src="./Status-bar.png" alt=""></div>
+
+    <!--left arrow and title div -->
+    <div class="div" style="margin-top: -4px; background-color: lightgray;">
+        <div style="width: 50px; display:inline-block; margin-left:25px;">
+            <img src="./carrot-left.png" alt="" width="30px" height="50px">
+        </div>
+        <div style="width: 540px; text-align: center; display: inline-block;">
+            <p style="font-size: 30px;">나의 운동</p>
+        </div>
+    </div>
+
+    <!-- home, Recommend, plan menu div -->
+    <div class="div" style="margin-top: 0px; height: 70px; background-color: cornflowerblue;">
+        <div class="div1" style="width: 235px; height: 70px;">
+            <p style="font-size: 20px; color: white; text-align: center;">홈</p>
+        </div>
+        <div class="div1" style="width: 234px; height: 70px;">
+            <p style="font-size: 20px; color: white; text-align: center;">추천 운동</p>
+        </div>
+        <div class="div1" style="width: 239px; height: 70px; background-color: greenyellow">
+            <p style="font-size: 20px; color: black; text-align: center;">운동 계획</p>
+        </div>
+    </div>
+
+    <!-- Calender div -->
+    <div class="div" style="height: 200px; background-color: lightgray;">
+        <p>달력을 넣어야하는 부분</p>
+    </div>
+
+    <!-- Today`s date -->
+    <div class="div">
+        <p>날짜를 넣어야 하는 곳</p>
+    </div>
+
+    <!-- ActiveReport div -->
+    <div class="div" style="background-color: lightgreen;"><p>활동 - 14009걸음을 걸었어요!</p></div>
+    <div class="div" style="background-color: lightgreen; margin-top: -8px;"><p>자전거 타기를 실천했어요!</p></div>
+
+
+
+
+</body>
+
+</html>
