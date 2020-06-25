@@ -1,0 +1,69 @@
+{% extends 'main/include/head.html' %}
+{% load static %}
+
+{% block st %}    
+<style>
+        .div {
+            width: 720px;
+            margin-left: 100px;
+        }
+
+        .div1 {
+            display: inline-block;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 150px;
+        }
+
+        .ExerciseImg {
+            width: 720px;
+            height: 300px;
+            margin-left: 100px;
+            background-image: url({% static 'main/img/Exercise_magazine.jpg' %});
+            background-position: bottom center;
+            background-size: cover;
+        }
+</style>
+{% endblock %}
+
+{% block content %}  
+    <!-- User name div -->
+    <div class="div" style="margin-left: 120px;">
+        <p style="font-size: 25px;">안주영님</p>
+    </div>
+
+    <!-- pedometer div -->
+    <div class="div">
+        <div class="circle" style="margin-left: 260px;">0/10000</div>
+    </div>
+
+    <!-- Weekly Exercise Title div -->
+    <div class="div" style="margin-left: 120px;">
+        <p style="font-size: 25px;">주간 운동량</p>
+    </div>
+
+    <!-- Need to insert chart-->
+    <div class="div" style="background-color: lightgray; text-align: center;">
+        차트를 삽입해야함
+    </div>
+
+    <!-- health magazine title -->
+    <div class="div" style="margin-left: 120px;">
+        <p style="font-size: 25px;">건강 매거진</p>
+    </div>
+
+    <!--health magazine image and link -->
+    <div class="ExerciseImg" onclick="window.location.href='/'">
+        <div class="div1">
+            <h1 style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">
+            주영님을 위한 매거진</h1>
+            <p style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">체중 관리를 잘하는 법</p>
+        </div>
+    </div>
+{% endblock %}
