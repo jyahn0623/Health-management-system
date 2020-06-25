@@ -1,0 +1,56 @@
+{% extends 'main/include/head.html' %}
+{% block st %}   
+    <style>
+        .div {
+            width: 720px;
+            margin-left: 100px;
+        }
+
+        .div1 {
+            display: inline-block;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 150px;
+        }
+
+        .ExerciseImg {
+            width: 720px;
+            height: 300px;
+            margin-left: 100px;
+            background-image: url("./Exercise_magazine.jpg");
+            background-position: bottom center;
+            background-size: cover;
+        }
+    </style>
+
+    <script type="text/javascript">
+    function timer () {
+        var date = new Date();
+        var year = date.getFullYear();
+        var montth = date.getMonth() + 1;
+        var day = date.getDate();
+    }
+    </script>
+{% endblock %}
+{% block content %}
+    <!-- Calender div -->
+    <div class="div" style="height: 200px; background-color: lightgray;">
+        <p>달력을 넣어야하는 부분</p>
+    </div>
+
+    <!-- Today`s date -->
+    <div class="div">
+        <p>날짜를 넣어야 하는 곳</p>
+    </div>
+
+    <!-- ActiveReport div -->
+    <div class="div" style="background-color: lightgreen;"><p>활동 - 14009걸음을 걸었어요!</p></div>
+    <div class="div" style="background-color: lightgreen; margin-top: -8px;"><p>자전거 타기를 실천했어요!</p></div>
+{% endblock %}
+

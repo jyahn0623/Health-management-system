@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+   <meta charset="UTF-8">
+    {% block st %}
+    {% endblock %}
+</head>
+<body>
+  
+<!-- Status bar div -->
+<div class="div"><img src="{% static 'main/img/Status-bar.png' %}" alt="header"></div>
+
+<!--left arrow and title div -->
+<div class="div" style="margin-top: -4px; background-color: lightgray;">
+    <div style="width: 50px; display:inline-block; margin-left:25px;">
+        <a href="/"><img src="{% static 'main/img/carrot-left.png' %}" alt="" width="30px" height="50px"></a>
+    </div>
+    <div style="width: 540px; text-align: center; display: inline-block;">
+        <p style="font-size: 30px;">나의 운동</p>
+    </div>
+</div>
+<!-- home, Recommend, plan menu div -->
+<div class="div" style="margin-top: 0px; height: 70px; background-color: cornflowerblue;">
+    <div class="div1" style="width: 235px; height: 70px; {% if current == 'e' %} background-color : red; {% endif %}">
+        <p style="font-size: 20px; color: black; text-align: center;"><a class="nav-items" href="{% url 'exercise' %}" style="color : black; text-decoration : none;">홈</a></p>
+    </div>
+    <div class="div1" style="width: 235px; height: 70px; {% if current == 'r' %} background-color : red; {% endif %}">
+        <p style="font-size: 20px; color: white; text-align: center;"><a class="nav-items" href="{% url 'exercise-recommend' %}" style="color : black; text-decoration : none;">추천 운동</a></p>
+    </div>
+    <div class="div1" style="width: 235px; height: 70px; {% if current == 'p' %} background-color : red; {% endif %}">
+        <p style="font-size: 20px; color: white; text-align: center;"><a class="nav-items" href="{% url 'exercise-plan' %}" style="color : black; text-decoration : none;">운동 계획</a></p>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'main/include/head.html' %}
+{% load static %}
+
+{% block st %}  
+    <style>
+        .div {
+            width: 720px;
+            margin-left: 100px;
+        }
+
+        .div1 {
+            display: inline-block;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 150px;
+        }
+
+        .ExerciseImg {
+            width: 720px;
+            height: 300px;
+            margin-left: 100px;
+            background-image: url({% static 'main/img/Exercise_magazine.jpg' %});
+            background-position: bottom center;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- Exercise for user title -->
+    <div class="div" style="margin-left: 120px;">
+        <p style="font-size: 25px;">안주영님을 위한<Br>운동을 준비했습니다!</p>
+    </div>
+    
+    <!-- Exercise div -->
+    <div class="ExerciseImg">
+        <div class="div1">
+            <h1 style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">
+            자전거</h1>
+            <p style="margin-left: 20px; font-family:fantasy; font-size: 20px; color: white;">
+            자전거로 자연을 만끽하시는건 어떤가요?</p>
+        </div>
+    </div>
+    
+    <!-- Addition article place div -->
+    <div class="div" style="background-color: lightgray; height: 200px;">추가 기사를 넣어주세요</div>
+{% endblock %}
