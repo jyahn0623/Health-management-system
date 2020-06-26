@@ -38,15 +38,14 @@
     </div>
     
     <!-- Exercise div -->
-    <div class="ExerciseImg">
-        <div class="div1">
-            <h1 style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">
-            자전거</h1>
-            <p style="margin-left: 20px; font-family:fantasy; font-size: 20px; color: white;">
-            자전거로 자연을 만끽하시는건 어떤가요?</p>
+    {% for e in ex %}
+        <div class="ExerciseImg">
+            <div class="div1">
+                <h1 style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">
+                {{e.e_name}}</h1>
+                <p style="margin-left: 20px; font-family:fantasy; font-size: 20px; color: white;">
+                {{e.e_description}}</p>
+            </div>
         </div>
-    </div>
-    
-    <!-- Addition article place div -->
-    <div class="div" style="background-color: lightgray; height: 200px;">추가 기사를 넣어주세요</div>
+    {% endfor %}
 {% endblock %}
