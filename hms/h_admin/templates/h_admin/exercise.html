@@ -1,0 +1,46 @@
+
+{% extends 'h_admin/include/head.html' %}
+
+{% block content %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"> 
+        <div class="title">
+            운동 관리
+        </div>
+        <div class="content">
+        <table class='table table-hover' id="histories-table">
+                <thead>
+                    <th>ID</th>
+                    <th>카테고리</th>
+                    <th>운동</th>
+                    <th>설명</th>
+                    <th>추천수</th>
+                </thead>
+                <tbody>
+                
+                    {% for e in ex %}
+                    <tr>
+                        <td>{{e.pk}}</td>
+                        <td>{{e.e_category}}</td>
+                        <td>{{e.e_name}}</td>
+                        <td>{{e.e_description}}</td>
+                        <td>{{e.e_recommend_count}}</td>
+                    </tr>
+                    {% endfor %}
+                </tobdy>
+            </table>
+        </div>
+
+         <div class="title">
+            원터치 운동 등록
+        </div>
+        <div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}    
+                    {{e_forms.as_ul}}
+                <input type="submit" value="등록">
+            </form>
+        </div>
+
+    </main>
+
+{% endblock %}

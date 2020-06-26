@@ -1,0 +1,31 @@
+{% extends 'h_admin/include/head.html' %}
+
+{% block st %}
+    <style>
+        .card{
+            display : flex;
+            justify-content : center;
+            align-items : center;
+            height : 300px;
+            color : white;
+            font-weight : bold;
+            font-size : 30px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>건강 관리 시스템 관리자 페이지</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6" onclick="window.location.href='/manage/exercise'">
+                <div class="card bg-info">운동 관리</div>
+            </div>
+            <div class="col-md-6" onclick="window.location.href='/manage/exercise'">
+                <div class="card bg-danger">식단 관리</div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
