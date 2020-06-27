@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta charset="UTF-8">
+<title>나의 식단 평가 조회</title>
+
+<head>
+    <style>
+        .BasicAlign {
+            width: 720px;
+        }
+
+        .fontStyle {
+            padding-left: 30px;
+            font-size: 40px;
+            font-weight: bolder;
+        }
+
+        .AssessmentArea {
+            width: 720px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ButtonStyle {
+            background-color: lightgray;
+            text-align: center;
+            font-size: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Status Bar Div(Parent, To use Margin) -->
+    <div class="BasicAlign"><img src="./Status-bar.png" width="720" alt="">
+
+        <!-- Title -->
+        <div class="BasicAlign">
+            <h1 class="fontStyle">나의 식단 평가 조회</h1>
+        </div>
+
+        <!-- Date Area -->
+        <div class="BasicAlign">
+            <p id="day" style="padding-left: 100px; font-size: 25px; font-weight: bold;">날짜</p>
+            <script>
+                var now= new Date();
+                var Year = now.getFullYear();
+                var Month = now.getMonth();
+                var Date = now.getDate();
+                document.getElementById("day").innerHTML = Year +"년" + "&nbsp;" + Month + "월" + "&nbsp;" + Date + "일";
+            </script>
+        </div>
+
+        <!-- Assessment Area -->
+        <div class="AssessmentArea">
+            <div style="width: 600px; height: 300px; border: 1px solid black;">Aseessment Area</div>
+        </div>
+
+
+        <!-- Menu Assessment Title Area -->
+        <div class="BasicAlign">
+            <h2 class="fontStyle" style="font-size: 30px;">식단 평가</h2>
+        </div>
+        <!-- Menu Assessment Area -->
+        <div class="AssessmentArea">
+            <div style="width: 600px; height: 200px; border: 1px solid black;">Menu Assessment Area</div>
+        </div>
+        <!-- Page Button Area -->
+        <div class="basicAlign">
+            <table class="AssessmentArea" style="padding-top: 10px; border-spacing:15px;">
+                <th class="ButtonStyle">
+                    <</th> <th class="ButtonStyle" style="background-color: lightskyblue;">1
+                </th>
+                <th class="ButtonStyle">2</th>
+                <th class="ButtonStyle">3</th>
+                <th class="ButtonStyle">4</th>
+                <th class="ButtonStyle">></th>
+            </table>
+        </div>
+        <!-- Button Area -->
+        <div class="BasicAlign">
+            <div
+                style="display:inline-block; background-color: lightslategrey;
+             width: 100px; height: 40px; border-radius: 20px; text-align:center; line-height: 35px; margin-left: 30px; margin-top: 30px;">
+                prev</div>
+            <div
+                style="display:inline-block; background-color: lightslategrey;
+            width: 100px; height: 40px; border-radius: 20px; text-align:center; line-height: 35px; margin-right: 30px; margin-top: 30px; float: right;">
+                홈으로</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
