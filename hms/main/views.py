@@ -7,6 +7,7 @@ from django.core import serializers
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from datetime import date
+import dateutil.parser
 import json
 # 메인
 def main(request):
@@ -45,7 +46,8 @@ def excercise_plan(request):
         td = ToDoList.objects.create(
                                 tdl_title=tdl_title,
                                 tdl_content=tdl_content,
-                                tdl_date=datetime.date.fromisoformat(tdl_date)
+                                #tdl_date=datetime.date.fromisoformat(tdl_date)
+                                tdl_date = dateutil.parser.parse(tdl_date)
                             )
 
         td_s = serializers.serialize('json', [td], ensure_ascii=False)
