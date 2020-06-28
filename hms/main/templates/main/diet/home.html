@@ -1,0 +1,102 @@
+{% extends 'main/include/head.html' %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}
+<div class="title">안주영님을 위한 추천 식단입니다!</div>
+<div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        {% for m in diets %}
+            <div class="swiper-slide" style="height : 300px; {% if m.m_thumbnail %} background-image : url({{m.m_thumbnail.url}}); background-size : cover; {% endif %}" onclick="window.location.href='{{m.get_absolute_url}}'">
+            <div class="swiper-wrapper-jy">
+                <div class="card-title">{{m.m_title}}</div>
+                <div class="card-date">{{m.m_content}}</div>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<div class="title">나의 식단 <a class="blue-1" href="#add-list" rel="modal:open">+</a></div>
+
+<div>
+    {% for d in diets %}
+        <div class="swiper-slide" style="height : 300px; margin-bottom : 10px; {% if d.m_thumbnail %} background-image : url({{d.m_thumbnail.url}}); background-size : cover; {% endif %}" onclick="window.location.href='{{m.get_absolute_url}}'">
+        <div class="t-wrapper">
+            <div class="card-title" style="padding : 18px;">{{d.m_title}}</div>
+            <input class='d-del-btn' type="button" value="x" data-pk="{{d.pk}}">
+        </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+<div id="add-list" class="modal">
+    <p class='bold'>식단 추가</p>
+    <form id="d-form">
+        {{form.as_p}}
+    </form>
+    <input type="button" value="저장" class="add-btn">
+</div>
+
+
+<script>
+    (function(){
+        var swiper = new Swiper('.swiper-container', {
+        autoplay : {
+            delay : 2000,
+        },
+        pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    })();
+
+    $(".add-btn").click(function(){
+        var fd = new FormData($("#d-form").get(0));
+        var file = $("#id_m_thumbnail").get(0).files[0];
+        fd.append('csrfmiddlewaretoken', '{{csrf_token}}');
+        if (file && typeof(file) == 'object') fd.append("m_thumbnail", file); 
+        $.ajax({
+            url : '/diet',
+            type : 'post',
+            processData: false,
+            contentType: false,
+            data : fd,
+            success : function(res){
+                alert(res.msg);
+            },
+            error : function(err){
+                console.log(err);
+            }
+        })
+    })
+
+    $(".d-del-btn").click(function(){
+        var pk = $(this).data('pk');
+        var p_el = $(this).parent(".diet-item");
+        if (pk == undefined) return;
+        $.ajax({
+            url : '/diet/'+pk+'/delete',
+            type : 'post',
+            data : {'csrfmiddlewaretoken' : '{{csrf_token}}'},
+            success : function(res){
+                if (p_el) {
+                    p_el.remove();
+                    alert(res.msg);
+                }
+            },
+            error : function(err){
+                console.log(err);
+            }
+        })
+    })
+
+</script>
+
+{% endblock %}

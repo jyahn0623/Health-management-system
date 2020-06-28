@@ -14,17 +14,21 @@
     </style>
 {% endblock %}
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <h2>건강 관리 시스템 관리자 페이지</h2>
+            <div class="alert alert-info w-100">본 페이지는 건강 관리 시스템(HMS)의 관리자 페이지입니다.</div>
         </div>
         <div class="row">
-            <div class="col-md-6" onclick="window.location.href='/manage/exercise'">
+            <div class="col-md-4" onclick="window.location.href='/manage/exercise'">
                 <div class="card bg-info">운동 관리</div>
             </div>
-            <div class="col-md-6" onclick="window.location.href='/manage/exercise'">
+            <div class="col-md-4" onclick="window.location.href='/manage/diet'">
                 <div class="card bg-danger">식단 관리</div>
             </div>
+            <div class="col-md-4" onclick="window.location.href='/manage/magazine'">
+                <div class="card bg-warning">매거진 관리</div>
+            </div>
+            
         </div>
         
     </div>
