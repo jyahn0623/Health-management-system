@@ -1,56 +1,119 @@
 {% extends 'main/include/head.html' %}
+{% load static %}
 {% block st %}   
-    <style>
-        .div {
-            width: 720px;
-            margin-left: 100px;
-        }
+    <script src="{% static 'main/js/main.js'%}"></script>
+    <link href="{% static 'main/css/main.css' %}" rel="stylesheet" />
 
-        .div1 {
-            display: inline-block;
-        }
-
-        .circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: lightgray;
-            text-align: center;
-            line-height: 150px;
-        }
-
-        .ExerciseImg {
-            width: 720px;
-            height: 300px;
-            margin-left: 100px;
-            background-image: url("./Exercise_magazine.jpg");
-            background-position: bottom center;
-            background-size: cover;
-        }
-    </style>
-
-    <script type="text/javascript">
-    function timer () {
-        var date = new Date();
-        var year = date.getFullYear();
-        var montth = date.getMonth() + 1;
-        var day = date.getDate();
-    }
-    </script>
 {% endblock %}
 {% block content %}
-    <!-- Calender div -->
-    <div class="div" style="height: 200px; background-color: lightgray;">
-        <p>달력을 넣어야하는 부분</p>
+    <div id="calender"><a id="addTodolist" href="#add-list" rel="modal:open">할 일 목록 추가</a></div>
+
+    <div id="add-list" class="modal">
+        <p style="font-weight : bold;">할 일 목록 추가</p>
+        <form id="tdl-form">
+            {{form.as_p}}
+        </form>
+        <input type="button" value="저장" class="add-tdl-btn">
+
     </div>
 
-    <!-- Today`s date -->
-    <div class="div">
-        <p>날짜를 넣어야 하는 곳</p>
+    <div class="tdl-lists">
+        
     </div>
 
-    <!-- ActiveReport div -->
-    <div class="div" style="background-color: lightgreen;"><p>활동 - 14009걸음을 걸었어요!</p></div>
-    <div class="div" style="background-color: lightgreen; margin-top: -8px;"><p>자전거 타기를 실천했어요!</p></div>
+    <script>
+        /*
+            페이지 init
+        */
+        var c;
+        $(document).ready(function(){
+            c = new FullCalendar.Calendar($("#calender").get(0), {
+                initialView: 'dayGridMonth',
+                locale : 'ko',
+                selectable: true,
+                events: [
+                            {% for t in tdls %}
+                                {
+                                    id: "{{t.pk}}",
+                                    title: "{{t.tdl_title}}",
+                                    start: "{{t.tdl_date|date:"Y-m-d"}}"
+                                },
+                            {% endfor %}
+                        ],
+                dateClick : getEventsByDate,
+                eventContent  : function(arg, createElement){
+                    console.log(arg, createElement);
+                }
+            });
+            c.render();
+            
+        })
+
+        function getEventsByDate(info){
+            var date = info.dateStr;
+            $.ajax({
+                url : '/rest/tdl',
+                type : 'get',
+                data : {
+                    'date' : date,
+                },
+                success : function(res){
+                    try{
+                        var tdls = JSON.parse(res.tds);
+                        tdlrender(tdls);
+                    }catch(err){}
+                }
+            })
+        }
+
+        function tdlrender(tdls){
+            $(".tdl-lists").empty();
+            for (var i=0; i<tdls.length; i++){
+                var $el = $("<div class='tdl-card'>\
+                            <span class='tdl-title'>"+tdls[i]['fields']['tdl_title']+"</span>\
+                            </div>");
+                $(".tdl-lists").append($el);
+            }
+        }
+
+        $(".add-tdl-btn").click(function(){
+            var fd = new FormData($("form#tdl-form").get(0));
+            fd.append('csrfmiddlewaretoken', '{{csrf_token}}');
+            $.ajax({
+                url : '/exercise/plan',
+                type : 'post',
+                data : fd,
+                contentType : false,
+                processData : false,
+                success : function(res){
+                    try{
+                        var e = JSON.parse(res.td)[0];
+                        console.log(e);
+                        var ev = {
+                            id : e.pk,
+                            title : e.fields.tdl_title,
+                            start : e.fields.tdl_created_at,
+                        };
+                        c.addEvent(ev);
+                    }catch(err){
+                        console.log(err);
+                    }
+                    alert(res.msg);
+                    clearInput();
+                },
+                error : function(err){
+                    console.log(err);
+                }
+            })
+        })
+
+        function clearInput(){
+            $("#id_tdl_title, #id_tdl_content").val("");
+        }
+
+
+
+    </script>
+
 {% endblock %}
 

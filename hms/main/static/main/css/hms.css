@@ -1,0 +1,201 @@
+@charset "utf-8";
+
+@font-face {
+	font-family:'NanumSquareR'; 
+	src : url('../fonts/NanumSquareR.eot'); 
+    src : url('../fonts/NanumSquareR.eot?iefix') format('eot'),
+          url('../fonts/NanumSquareR.woff') format('woff'),  
+          url('../fonts/NanumSquareR.ttf') format('ttf');
+}
+
+body {font-family:'NanumSquareR', 'Malgun Gothic', dotum, sans-serif; color:#000;}
+.outer, .footer {
+    display: flex;
+    flex : 1;
+    justify-content: center;
+}
+.div {
+    width: 720px;
+}
+.div1 {
+    display: inline-block;
+}
+
+.nav-header{
+    display: flex;
+}
+.div1.head{
+    flex : 1;
+}
+
+.content-wrapper{
+    padding : 15px;
+}
+
+.graph {
+    width: 150px;
+    position: relative;
+    margin: 25px 0 0 40px;
+    display: inline-block;
+}
+
+.graph > p {
+    font-size: 14px;
+    color: #5b5b5b;
+    position: absolute;
+    font-weight: bold;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    line-height: 1em;
+    text-align: center;
+}
+
+.graph > canvas{
+    margin: 0 0 10px -75px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+#calender { 
+    width: 700px;
+    margin : 10px 0;
+    position: relative;
+}
+
+.wrapper{
+    width: 720px;
+    /* border : 30px solid #5b5b5b; */
+    border : 3mm ridge   #999999;
+    border-radius: 30px;
+    min-height: 900px;
+}
+
+#addTodolist{
+    position: absolute;
+    top : 2px;
+    right : 180px;
+    color: #fff;
+    background-color: #107aff;
+    border-color: #107aff;
+    padding: 0.4em 0.65em;
+    font-size: 1em;
+    line-height: 1.5;
+    border-radius: 0.25em;
+    text-decoration: none;
+}
+
+.main-wrapper{
+    /* display: flex; */
+    padding : 50px;
+}
+.menus{
+    /* flex : 1; */
+    display: inline-block;
+    height : 200px;
+    width:  170px;
+    margin-right : 20px;
+}
+
+.main-wrapper .items{
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    font-size : 20px;
+}
+
+.menus.items1{
+    background-image: url('../img/a.png');
+    background-repeat: no-repeat;  
+    background-size: cover; 
+}
+.menus.items2{
+    background-image: url('../img/b.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.menus.items3{
+    background-image: url('../img/c.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.title{
+    position: relative;
+    font-size: 25px;
+    color: #2396ff;
+    line-height: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #78beff;
+    font-weight: bold;
+    margin: 20px 0px 10px 0px;
+}
+
+.blue-1 {
+    padding: 1px 5px;
+    width:100px;
+    text-align:center;
+    background:#107aff;
+    font-weight:bold; 
+    color:#fff;
+    text-decoration: none;
+}
+
+.diet-item{
+    height : 300px;
+    margin : 5px 8px;
+}
+
+
+.swiper-wrapper-jy{
+    padding : 18px;
+    height: 300px;
+    /* width:  100%; */
+    background-color: rgba(0, 0, 0, 0.3);
+    flex-direction: row;
+    cursor: pointer;
+}
+.card-title{
+    font-size : 30px;
+    font-weight: bold;
+    color : #fff
+}
+.card-date{
+    margin : 5px 0 0 0;
+    font-size : 18px;
+    color : #fff
+}
+
+span.f-title{
+    font-size: 30px;
+}
+span.f-content{
+    font-size: 16px;
+    line-height: 1.3em;
+}
+
+.tdl-card{
+    padding : 20px 12px;
+    background-color: #007aff;
+    color : #fff;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.d-del-btn{
+    position: absolute;
+    right : 3px;
+    top : 3px;
+    font-size: 30px;
+}
+
+.t-wrapper{
+    height: 300px;
+    /* width:  100%; */
+    background-color: rgba(0, 0, 0, 0.3);
+    flex-direction: row;
+    cursor: pointer;
+}

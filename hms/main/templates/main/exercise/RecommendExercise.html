@@ -3,48 +3,29 @@
 
 {% block st %}  
     <style>
-        .div {
-            width: 720px;
-            margin-left: 100px;
-        }
-
-        .div1 {
-            display: inline-block;
-        }
-
-        .circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: lightgray;
-            text-align: center;
-            line-height: 150px;
-        }
-
+       
         .ExerciseImg {
-            width: 720px;
             height: 300px;
-            margin-left: 100px;
             background-image: url({% static 'main/img/Exercise_magazine.jpg' %});
-            background-position: bottom center;
+            {% comment %} background-position: bottom center; {% endcomment %}
             background-size: cover;
+            margin-bottom : 10px;
+            cursor : pointer;
         }
     </style>
 {% endblock %}
 {% block content %}
     <!-- Exercise for user title -->
-    <div class="div" style="margin-left: 120px;">
-        <p style="font-size: 25px;">안주영님을 위한<Br>운동을 준비했습니다!</p>
-    </div>
+    <div style="font-size: 25px;" class="title">안주영님을 위한 운동을 준비했습니다!</div>
     
     <!-- Exercise div -->
     {% for e in ex %}
-        <div class="ExerciseImg">
-            <div class="div1">
-                <h1 style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">
-                {{e.e_name}}</h1>
-                <p style="margin-left: 20px; font-family:fantasy; font-size: 20px; color: white;">
-                {{e.e_description}}</p>
+        <div class="swiper-wrapper-jy" style="margin-bottom : 10px; {% if e.e_thumbnail %} background-image : url({{e.e_thumbnail.url}}); background-size : cover; {% endif %}"  onclick="window.location.href='{{e.get_absolute_url}}'">
+            <div>
+                <div class="card-title">
+                {{e.e_name}}</div>
+                <div class="card-date">
+                {{e.e_description}}</div>
             </div>
         </div>
     {% endfor %}

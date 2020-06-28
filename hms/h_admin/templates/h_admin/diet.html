@@ -1,0 +1,65 @@
+
+{% extends 'h_admin/include/head.html' %}
+
+{% block content %}
+    <main role="main" class="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4"> 
+        <div class="title">
+            식단 관리
+        </div>
+        <div class="content">
+        <table class='table table-hover' id="histories-table">
+                <thead>
+                    <th>ID</th>
+                    <th>식단명</th>
+                    <th>설명</th>
+                    <th>메뉴</th>
+                </thead>
+                <tbody>
+                
+                    {% for e in ex %}
+                    <tr>
+                        <td>{{e.pk}}</td>
+                        <td>{{e.m_title}}</td>
+                        <td>{{e.m_content}}</td>
+                         <td>
+                            <input class="btn btn-primary mod-btn" type="button" value="수정" onclick="window.location.href='/manage/diet?pk={{e.pk}}'">
+                            <input class="btn btn-primary del-btn" type="button" value="삭제" data-pk="{{e.pk}}">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tobdy>
+            </table>
+        </div>
+
+         <div class="title">
+            원터치 식단 등록·수정
+        </div>
+        <div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}    
+                    {{e_forms.as_ul}}
+                <input type="submit" value="등록">
+            </form>
+        </div>
+
+    </main>
+
+    <script>
+    $(".del-btn").click(function(){
+        var pk = $(this).data('pk');
+        if (pk == undefined) return;
+        $.ajax({
+            url : '/manage/diet/'+pk+'/delete',
+            type : 'post',
+            data : {'csrfmiddlewaretoken' : '{{csrf_token}}'},
+            success : function(res){
+                window.location.reload();
+                alert(res.msg);
+            },
+            error : function(err){
+                console.log(err);
+            }
+        })
+    })
+    </script>
+{% endblock %}

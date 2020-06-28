@@ -3,28 +3,9 @@
 
 {% block st %}    
 <style>
-        .div {
-            width: 720px;
-            margin-left: 100px;
-        }
-
-        .div1 {
-            display: inline-block;
-        }
-
-        .circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: lightgray;
-            text-align: center;
-            line-height: 150px;
-        }
-
         .ExerciseImg {
             width: 720px;
             height: 300px;
-            margin-left: 100px;
             background-image: url({% static 'main/img/Exercise_magazine.jpg' %});
             background-position: bottom center;
             background-size: cover;
@@ -34,36 +15,104 @@
 
 {% block content %}  
     <!-- User name div -->
-    <div class="div" style="margin-left: 120px;">
-        <p style="font-size: 25px;">안주영님</p>
-    </div>
+    <div class="title" style="font-size: 25px;">안주영님 환영합니다!</div>
+
 
     <!-- pedometer div -->
-    <div class="div">
-        <div class="circle" style="margin-left: 260px;">0/10000</div>
-    </div>
+    <div class="div" style="height : 200px; text-align : center;">
+        <div class="graph">
+            <p>	
+                <em>금일 걸음수</em><br>
+                <strong><span style="color : #107aff">1300</span>/10000</strong>
+            </p>
+            <canvas id="graphPedometer"></canvas>
+        </div>
+        <script>
+                (function drawChart(){
+                    var ctx = document.getElementById('graphPedometer').getContext('2d');
+                    var myBarChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                datasets: [{
+                                    data: [1300, 10000],
+                                    backgroundColor: [
+                                        "#107aff",
+                                        "#9b9b9b"
+                                    ],
+                                }],
+                            },
+                            options: {
+                                cutoutPercentage: 90,
+                                elements: {
+                                    arc: {
+                                        borderWidth: 0
+                                    }
+                                },
+                                tooltips: {
+                                    mode: 'none',
+                                },
+                                responsive: false,
+                                legend: {
+                                    position: 'top',
+                                },
+                                animation: {
+                                    animateRotate: true
+                                },
+                            }
+                        });
+                })();
+            </script>
 
+    </div>
     <!-- Weekly Exercise Title div -->
-    <div class="div" style="margin-left: 120px;">
-        <p style="font-size: 25px;">주간 운동량</p>
-    </div>
+    <div style="font-size: 25px;" class="title">주간 운동량</div>
 
-    <!-- Need to insert chart-->
-    <div class="div" style="background-color: lightgray; text-align: center;">
-        차트를 삽입해야함
+    <div class="div" >
+        <canvas id="graphExerciseAverageDaily"></canvas>
+        <script>
+            new Chart(document.getElementById("graphExerciseAverageDaily"),
+                    {"type":"line","data":{"labels":["1주차","2주차","3주차","4주차","5주차","6주차","7주차"],
+                    "datasets":[
+                                {"label":"운동량",
+                                "data":[72,59,58,32,100,55,40],
+                                "fill":false,
+                                "borderColor":"#107aff",
+                                "lineTension":0.1}
+                                ]}
+                    ,"options":{}});
+        </script>
     </div>
-
     <!-- health magazine title -->
-    <div class="div" style="margin-left: 120px;">
-        <p style="font-size: 25px;">건강 매거진</p>
-    </div>
+    <div style="font-size: 25px;" class="title">건강 매거진</div>
 
     <!--health magazine image and link -->
-    <div class="ExerciseImg" onclick="window.location.href='/'">
-        <div class="div1">
-            <h1 style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">
-            주영님을 위한 매거진</h1>
-            <p style="margin-left: 20px; font-family:fantasy; font-size: 30px; color: white;">체중 관리를 잘하는 법</p>
+    <div class="">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+            {% for m in magazines %}
+                <div class="swiper-slide" style="height : 300px; {% if m.m_thumbnail %} background-image : url({{m.m_thumbnail.url}}); background-size : cover; {% endif %}" onclick="window.location.href='{{m.get_absolute_url}}'">
+                <div class="swiper-wrapper-jy">
+                    <div class="card-title">{{m.m_title}}</div>
+                    <div class="card-date">{{m.m_modified_at}}</div>
+                </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
+    
+
+    <script>
+        (function(){
+            var swiper = new Swiper('.swiper-container', {
+            autoplay : {
+                delay : 2000,
+            },
+            pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
+        })();
+    </script>
 {% endblock %}

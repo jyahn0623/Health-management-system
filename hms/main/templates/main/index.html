@@ -1,45 +1,18 @@
-{% load static %}
-<!DOCTYPE html>
+{% extends 'main/include/head.html' %}
 
-<html lang="ko">
-<head>
-<title>건강 관리 시스템</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="{% static 'main/css/layout.css' %}" rel="stylesheet" type="text/css">
-</head>
-<body id="top">
-<div class="bgded overlay" style="background-image:url({% static 'main/img/Exercise_magazine.jpg' %});"> 
-  <div id="pageintro" class="hoc clear"> 
-    <div>
-      <ul class="slides">
-        <li>
-          <article>
-            <h3 class="heading">건강 관리 시스템</h3>
-          </article>
-        </li>
-      </ul>
-    </div>
+{% block content %}
+<div class="main-wrapper">
+  <div class="items" onclick="window.location.href='/exercise/plan'">
+    <span class="menus items1"></span><br>
+    <span>할 일 목록</span>
+  </div>
+  <div class="items" onclick="window.location.href='/diet'">
+    <span class="menus items2"></span><br>
+    <span>나의 식단</span>
+  </div>
+  <div class="items" onclick="window.location.href='/exercise'">
+    <span class="menus items3"></span><br>
+    <span>나의 운동</span>
   </div>
 </div>
-<div class="wrapper">
-  <div class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <figure id="introblocks">
-      <ul class="nospace group">
-        <li class="one_third first"><a href="{% url 'exercise' %}"><img src="images/demo/320x240.png" alt="">나의 운동</a></li>
-        <li class="one_third"><a href="#"><img src="images/demo/320x240.png" alt="">나의 식단</a></li>
-        <li class="one_third"><a href="#"><img src="images/demo/320x240.png" alt="">나의 식단</a></li>
-      </ul>
-    </figure>
-  </div>
-</div>
-
-<div class="wrapper">
-  <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2020 - All Rights Reserved - <a href="#">Paul Ahn</a></p>
-  </div>
-</div>
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-</body>
-</html>
+{% endblock %}
