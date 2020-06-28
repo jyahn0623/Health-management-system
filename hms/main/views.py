@@ -45,7 +45,7 @@ def excercise_plan(request):
         td = ToDoList.objects.create(
                                 tdl_title=tdl_title,
                                 tdl_content=tdl_content,
-                                tdl_date=date.fromisoformat(tdl_date)
+                                tdl_date=datetime.date.fromisoformat(tdl_date)
                             )
 
         td_s = serializers.serialize('json', [td], ensure_ascii=False)

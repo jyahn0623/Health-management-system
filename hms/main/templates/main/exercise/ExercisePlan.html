@@ -88,11 +88,10 @@
                 success : function(res){
                     try{
                         var e = JSON.parse(res.td)[0];
-                        console.log(e);
                         var ev = {
                             id : e.pk,
                             title : e.fields.tdl_title,
-                            start : e.fields.tdl_created_at,
+                            start : e.fields.tdl_date,
                         };
                         c.addEvent(ev);
                     }catch(err){
