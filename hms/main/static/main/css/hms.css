@@ -199,3 +199,8 @@ span.f-content{
     flex-direction: row;
     cursor: pointer;
 }
+
+.tdl-title::before{
+    content: "\2728";
+    margin-right : 5px;
+}
